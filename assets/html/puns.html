@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piadas & Risadas</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Puns Page Specific Styles */
+        body {
+            overflow: hidden; /* Prevent scrolling, we want a contained app-like feel */
+        }
+
+        .puns-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #pun-card-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .pun-display-card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.5s;
+            transform-style: preserve-3d;
+        }
+
+        .pun-display-card.entering {
+            transform: translateX(120%) rotate(10deg);
+            opacity: 0;
+        }
+
+        .pun-display-card.exiting {
+            transform: translateX(-120%) rotate(-10deg);
+            opacity: 0;
+        }
+
+        .pun-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-radius: 24px;
+        }
+
+        .pun-display-card.flipped .pun-inner {
+            transform: rotateY(180deg);
+        }
+
+        .pun-front, .pun-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: rgba(30, 30, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .pun-front {
+            background: linear-gradient(145deg, rgba(40, 40, 55, 0.9), rgba(20, 20, 30, 0.9));
+        }
+
+        .pun-back {
+            background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+            transform: rotateY(180deg);
+            color: white;
+        }
+
+        .pun-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
+
+        .pun-text {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .tap-hint {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .controls-area {
+            margin-top: 2rem;
+            z-index: 10;
+        }
+
+        .next-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .next-btn:hover {
+            background: white;
+            color: var(--background-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .next-btn img {
+            filter: invert(1);
+            transition: filter 0.3s ease;
+        }
+
+        .next-btn:hover img {
+            filter: invert(0);
+        }
+
+        .next-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Emoji Particles */
+        .emoji-particle {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: particleFly 1s ease-out forwards;
+            z-index: 100;
+        }
+
+        @keyframes particleFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Vignette Overlay -->
+    <div id="vignette-overlay" class="vignette-active"></div>
+
+    <header style="position: fixed; top: 0; left: 0; width: 100%; padding: 20px; z-index: 100;">
+        <button class="icon-btn" id="back-btn" onclick="window.location.href='hub.html'" aria-label="Voltar">
+            <img src="../media/icons/arrow-left.svg" alt="Voltar" class="icon-svg">
+        </button>
+    </header>
+
+    <main class="puns-container">
+        <div id="pun-card-container">
+            <!-- Cards will be injected here by JS -->
+        </div>
+
+        <div class="controls-area">
+            <button id="next-pun-btn" class="next-btn">
+                <span>Próxima Piada</span>
+                <img src="../media/icons/arrow-right.svg" alt="Next" style="width: 20px; height: 20px;">
+            </button>
+        </div>
+    </main>
+
+    <script src="../js/puns.js"></script>
+    <script>
+        // Simple vignette fade out on load
+        window.addEventListener('load', () => {
+            const vignette = document.getElementById('vignette-overlay');
+            if(vignette) {
+                setTimeout(() => {
+                    vignette.classList.remove('vignette-active');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

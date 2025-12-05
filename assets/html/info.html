@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informação</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Inline styles for specific page layout adjustments */
+        .about-hero {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #fff, #a29bfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .about-hero p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .creator-section {
+            margin: 40px auto;
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .fun-facts {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 60px 0;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+    </style>
+</head>
+<body class="scrollable-body">
+    <div id="vignette-overlay" class="vignette-active"></div>
+    
+    <header>
+        <button class="icon-btn" id="back-btn" onclick="goBack()">
+            <img src="../media/icons/arrow-left.svg" alt="Back" class="icon-svg">
+        </button>
+        <h1>Sobre</h1>
+        <div style="width: 40px;"></div>
+    </header>
+
+    <main class="content-container">
+        
+        <!-- Hero -->
+        <section class="about-hero">
+            <h1>Por Trás do Código</h1>
+            <p>Pois é, um momento para glorificar horas de dedicação.</p>
+        </section>
+
+        <!-- Creator Profile -->
+        <section class="creator-section">
+            <div class="creator-card">
+                <div class="creator-bg"></div>
+                <div class="creator-content">
+                    <div class="creator-avatar">
+                        <img src="../media/images/myframe.webp" alt="Creator" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Felix'">
+                    </div>
+                    <div class="creator-info">
+                        <div class="creator-badge">O aluno</div>
+                        <h2>Antônio</h2>
+                        <p>Aprendiz e Desenvolvedor Full Stack</p>
+                        <div class="creator-bio">
+                            "Provavelmente deve estar lendo isso, então... Obrigado por chegar até aqui! Este projeto é uma expressão do meu apreço por você. Cada linha de código foi escrita com carinho, cada efeito visual pensado para encantar. Espero que esta experiência traga um sorriso ao seu rosto, assim como você trouxe ao meu."
+                        </div>
+                        <div class="creator-socials">
+                            <a href="https://github.com/ZpkDxGames" class="social-link">GitHub</a>
+                            <a href="https://youtu.be/oHg5SJYRHA0?si=Hl9xx7-z-jNQ4uXm" class="social-link">???</a>
+                            <a href="https://www.instagram.com/_tonim.br/" class="social-link">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Specs -->
+        <h2 class="section-header">Arquitetura do Sistema</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon">🧠</div>
+                <h3>Núcleo de IA</h3>
+                <p>Alimentado por <strong>Llama 3 70B</strong>, um modelo de altíssima capacidade. Capaz de conversas sensíveis ao contexto, adaptação de personalidade e retenção de memória.</p>
+                <div class="tech-tag">Rede Neural</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🎨</div>
+                <h3>UI / UX</h3>
+                <p>Linguagem de design Glassmorphism com efeitos de iluminação dinâmica. Layout totalmente responsivo com transições suaves aceleradas por hardware.</p>
+                <div class="tech-tag">Variáveis CSS³</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">⚡</div>
+                <h3>Desempenho</h3>
+                <p>Arquitetura JavaScript sem dependências. Manipulação de DOM otimizada e gerenciamento de estado em armazenamento local.</p>
+                <div class="tech-tag">Matriz em JavaScript</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🔒</div>
+                <h3>Privacidade</h3>
+                <p>Armazenamento de sessão no lado do cliente. Suas conversas vivem no seu navegador e nunca são armazenadas em servidores externos.</p>
+                <div class="tech-tag">Local Storage</div>
+            </div>
+        </div>
+
+        <!-- Fun Facts -->
+        <h2 class="section-header">Estatísticas do Projeto</h2>
+        <div class="fun-facts">
+            <div class="fact-item">
+                <div class="fact-value" data-target="71.242">0</div>
+                <div class="fact-label">Linhas de Código</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-value" data-target="312">0</div>
+                <div class="fact-label">Arquivos Fonte</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-value" data-target="999">0</div>
+                <div class="fact-label">Unidades de Cafeína</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-value" data-target="1000">0</div>
+                <div class="fact-label">% Gratidão</div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../js/utils/storage.js"></script>
+    <script>
+        const vignette = document.getElementById('vignette-overlay');
+        window.addEventListener('load', () => {
+            setTimeout(() => { if(vignette) vignette.classList.remove('vignette-active'); }, 100);
+            animateCounters();
+        });
+        function goBack() {
+            if(vignette) vignette.classList.add('vignette-active');
+            setTimeout(() => { window.location.href = 'hub.html'; }, 500);
+        }
+
+        function animateCounters() {
+            const counters = document.querySelectorAll('.fact-value');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                
+                let current = 0;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                        if(target === 100) counter.innerText += "%";
+                    }
+                };
+                updateCounter();
+            });
+        }
+    </script>
+</body>
+</html>

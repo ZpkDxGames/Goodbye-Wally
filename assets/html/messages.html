@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nora | AI</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="scrollable-body">
+    <div id="vignette-overlay" class="vignette-active"></div>
+    
+    <header>
+        <button class="icon-btn" id="back-btn" onclick="goBack()">
+            <img src="../media/icons/arrow-left.svg" alt="Back" class="icon-svg">
+        </button>
+        <h1 id="chat-page-title">AI Tutor</h1>
+        <button class="icon-btn" id="history-btn">
+            <img src="../media/icons/history.svg" alt="History" class="icon-svg">
+        </button>
+    </header>
+
+    <main class="chat-interface">
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will be injected here -->
+        </div>
+        
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Faça uma pergunta..." autocomplete="off">
+            <button id="send-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                </svg>
+            </button>
+        </div>
+    </main>
+
+    <!-- History Modal -->
+    <div class="modal" id="history-modal">
+        <div class="modal-content settings-content">
+            <span class="close-modal" id="close-history">&times;</span>
+            <h2>Histórico de Conversas</h2>
+            
+            <div class="sessions-list" id="sessions-list">
+                <!-- Sessions injected here -->
+            </div>
+
+            <button class="save-btn" id="new-chat-btn">+ Nova Conversa</button>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirm-modal">
+        <div class="modal-content confirm-content">
+            <h3>Tem certeza?</h3>
+            <p id="confirm-message">Você realmente deseja excluir esta conversa?</p>
+            <div class="confirm-actions">
+                <button class="cancel-btn" id="confirm-cancel">Cancelar</button>
+                <button class="delete-btn" id="confirm-yes">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/utils/storage.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/chat.js"></script>
+    <script>
+        // Apply Config
+        if (typeof TEACHER_CONFIG !== 'undefined') {
+            document.getElementById('chat-page-title').textContent = TEACHER_CONFIG.chatPage.title;
+            document.title = `Goodbye Surprise - ${TEACHER_CONFIG.chatPage.title}`;
+        }
+
+        const vignette = document.getElementById('vignette-overlay');
+        window.addEventListener('load', () => {
+            setTimeout(() => { if(vignette) vignette.classList.remove('vignette-active'); }, 100);
+        });
+        function goBack() {
+            if(vignette) vignette.classList.add('vignette-active');
+            setTimeout(() => { window.location.href = 'hub.html'; }, 500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Vignette Overlay (Starts active for fade-in effect) -->
+    <div id="vignette-overlay" class="vignette-active"></div>
+
+    <section id="hub-page" class="hub-visible">
+        <header>
+            <button class="icon-btn" id="back-btn" aria-label="Go Back">
+                <img src="../media/icons/arrow-left.svg" alt="Back" class="icon-svg">
+            </button>
+            
+            <button class="icon-btn" id="menu-btn" aria-label="Menu">
+                <img src="../media/icons/menu.svg" alt="Menu" class="icon-svg">
+            </button>
+        </header>
+
+        <main class="hub-main">
+            <h1>Bem-vindo ao Hub</h1>
+            <p>Selecione uma experiência para continuar.</p>
+
+            <div class="hub-grid">
+                <!-- Puns Card -->
+                <div class="hub-card" onclick="window.location.href='puns.html'" style="--delay: 0.1s">
+                    <div class="card-icon-wrapper">
+                        <img src="../media/icons/smile.svg" alt="Puns" class="card-icon">
+                    </div>
+                    <div class="card-title">Piadas, literalmente...</div>
+                    <div class="card-desc">
+                        Bom, piadas... todos nós gostamos de piadas.
+                    </div>
+                </div>
+
+                <!-- Messages Card -->
+                <div class="hub-card" onclick="window.location.href='messages.html'" style="--delay: 0.2s">
+                    <div class="card-icon-wrapper">
+                        <img src="../media/icons/chat.svg" alt="Messages" class="card-icon">
+                    </div>
+                    <div class="card-title" id="ai-card-title">Nora | IA</div>
+                    <div class="card-desc" id="ai-card-desc">
+                        Nessa era de IA e machine learning, por que não ter uma companhia em IA?
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class="hub-card" onclick="window.location.href='info.html'" style="--delay: 0.3s">
+                    <div class="card-icon-wrapper">
+                        <img src="../media/icons/info.svg" alt="Info" class="card-icon">
+                    </div>
+                    <div class="card-title">Sobre</div>
+                    <div class="card-desc">
+                        Que tal saber mais sobre tudo isso, huh?<br>
+                        Vai ser divertido, prometo...
+                    </div>
+                </div>
+
+                <!-- Finale Card -->
+                <div class="hub-card card-finale" onclick="window.location.href='finale.html'" style="--delay: 0.4s">
+                    <div class="card-icon-wrapper">
+                        <img src="../media/icons/question.svg" alt="Finale" class="card-icon">
+                    </div>
+                    <div class="card-title">Deixe um Recado</div>
+                    <div class="card-desc">
+                        Um espaço para compartilhar seus pensamentos. Suas palavras serão guardadas com carinho.
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar Overlay -->
+        <div id="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <button class="icon-btn" id="close-btn" aria-label="Close Menu">
+                    <img src="../media/icons/close.svg" alt="Close" class="icon-svg">
+                </button>
+            </div>
+
+            <div class="profile-section">
+                <div class="profile-container">
+                    <div class="profile-pic"></div>
+                    <img src="../media/images/myframe.webp" class="profile-frame" alt="Frame">
+                </div>
+                <h3>Antônio J. T. Neto</h3>
+                <div class="class-badge">Turma de 2025</div>
+            </div>
+
+            <div class="sidebar-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Dias Sobrevividos</span>
+                    <span class="stat-value">1.068</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Cafeína no sangue</span>
+                    <span class="stat-value">94 mL</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Páginas feitas do TC</span>
+                    <span class="stat-value">8.173</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Nível de sanidade</span>
+                    <span class="stat-value">1%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Canetas perdidas</span>
+                    <span class="stat-value">356</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Atrasos nas aulas</span>
+                    <span class="stat-value">7</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Neurônios</span>
+                    <span class="stat-value">23/mm³</span>
+                </div>
+            </div>
+
+            <button class="finale-btn" id="reason-btn">
+                <img src="../media/icons/question.svg" alt="Reason" class="icon-svg finale-icon">
+                Motivo?
+            </button>
+        </aside>
+    </section>
+
+    <!-- Reason Overlay -->
+    <div id="reason-overlay">
+        <canvas id="fireworks-canvas"></canvas>
+
+        <button id="back-btn-reason">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+        </button>
+
+        <div class="reason-card">
+            <h1 class="reason-title">O Motivo</h1>
+            <p class="reason-text">
+                Este projeto é uma despedida sincera aos professores que moldaram minha jornada. 
+                É uma cápsula do tempo digital da minha gratidão.
+                <br><br>
+                Sou eternamente grato por tudo, Wally. Desde os almoços em conjunto, até as broncas bem dadas em sala.
+                No fundo, você sempre fez o melhor por todos nós... agora dou muito valor nisso.
+            </p>
+        </div>
+
+        <div class="reason-footer">
+            Continue esse professor incrível! <span class="heart-icon">❤️</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/utils/storage.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/animations/fireworks.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // Apply Config
+        if (typeof TEACHER_CONFIG !== 'undefined') {
+            const titleEl = document.getElementById('ai-card-title');
+            const descEl = document.getElementById('ai-card-desc');
+            if (titleEl) titleEl.textContent = TEACHER_CONFIG.hub.title;
+            if (descEl) descEl.textContent = TEACHER_CONFIG.hub.description;
+        }
+    </script>
+</body>
+</html>

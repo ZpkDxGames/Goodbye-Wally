@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa?</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Vignette Overlay for Transitions -->
+    <div id="vignette-overlay"></div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Splash Screen Section -->
+    <section id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-text" data-text="Só um segundo, Wally...">Só um segundo, <span class="highlight-name">Wally...</span></div>
+            
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            
+            <button id="start-btn" class="hidden">Iniciar</button>
+        </div>
+        <div class="splash-footer">0%</div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils/storage.js"></script>
+    <script src="assets/js/animations/confetti.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

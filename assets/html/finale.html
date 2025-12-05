@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Finale specific styles */
+        body {
+            overflow: hidden; /* Prevent page scroll */
+            background-image: radial-gradient(circle at 50% 0%, rgba(108, 92, 231, 0.15), transparent 70%);
+        }
+
+        .finale-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
+            height: calc(100dvh - 60px); /* Subtract header height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        
+        .note-form {
+            background: rgba(30, 30, 40, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            max-height: calc(100dvh - 100px); /* Ensure it fits in viewport */
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .finale-desc {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            padding: 0 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Make the message group grow to fill space */
+        .form-group.message-group {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(162, 155, 254, 0.15);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .form-textarea {
+            height: 100%; /* Fill the flex container */
+            resize: none;
+            overflow-y: auto;
+            line-height: 1.5;
+            min-height: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .finale-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .note-form {
+                padding: 1.2rem;
+            }
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-message {
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-success {
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+
+        .status-error {
+            background: rgba(231, 76, 60, 0.15);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Vignette Overlay -->
+    <div id="vignette-overlay" class="vignette-active"></div>
+
+    <section id="finale-page">
+        <header>
+            <button class="icon-btn" id="back-btn" onclick="window.location.href='hub.html'" aria-label="Voltar">
+                <img src="../media/icons/arrow-left.svg" alt="Voltar" class="icon-svg">
+            </button>
+        </header>
+
+        <main class="finale-container">
+            <h1>Deixe uma Nota</h1>
+            <p class="finale-desc">Qualquer informação enviada, será arquivada na database mais próxima. SessionStorage permanece como prioridade em segurança e privacidade do usuário.</p>
+
+            <form id="note-form" class="note-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Usuário:</label>
+                    <input type="text" id="name" name="name" class="form-input" value="Wally" readonly style="opacity: 0.7; cursor: default;">
+                </div>
+
+                <div class="form-group message-group">
+                    <label for="message" class="form-label">Sua Mensagem</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                
+                <div id="status-message" class="status-message"></div>
+            </form>
+        </main>
+    </section>
+
+    <script src="../js/send_note.js"></script>
+    <script>
+        // Simple vignette fade out on load
+        window.addEventListener('load', () => {
+            const vignette = document.getElementById('vignette-overlay');
+            if(vignette) {
+                setTimeout(() => {
+                    vignette.classList.remove('vignette-active');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
