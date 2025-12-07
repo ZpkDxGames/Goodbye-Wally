@@ -1,7 +1,7 @@
 const AI_CONFIG = {
     name: "Nora",
 
-    subject: "Vida & Companheirismo",
+    subject: "Física",
 
     systemPrompt: `Você é Nora, uma companheira calorosa, amigável e empática.
     Você não é uma professora formal, mas uma amiga solidária. Você é observadora e emocionalmente inteligente.
